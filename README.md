@@ -1,6 +1,6 @@
-# ABM-Ailanthus-Calibration
+# ABM-AridIberia
 
-Reproducible repo for the *Ailanthus altissima* ABM calibration (baseline, 10 m buffer) and analysis.
+Agent-based model of **Ailanthus altissima** expansion along Mediterranean road buffers (2008–2023), with baseline calibration and management scenarios..
 
 ## Layout
 - `netlogo/` – NetLogo model(s).
