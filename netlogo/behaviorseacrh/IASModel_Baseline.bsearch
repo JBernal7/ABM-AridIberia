@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<!DOCTYPE search SYSTEM "behaviorsearch.dtd">
+<search>
+    <bsearchVersionNumber>1,10</bsearchVersionNumber>
+    <modelInfo>
+        <modelFile>C:\Netlogo\IAS_Expansion_Model_ForCalibration.nlogo</modelFile>
+        <modelSetupCommands>setup</modelSetupCommands>
+        <modelStepCommands>go</modelStepCommands>
+        <modelStopCondition>ticks &gt;= 15</modelStopCondition>
+        <modelStepLimit>16</modelStepLimit>
+        <modelMetricReporter>objective_inmask_delta</modelMetricReporter>
+        <modelMeasureIf>true</modelMeasureIf>
+    </modelInfo>
+    <fitnessInfo>
+        <fitnessMinimized>true</fitnessMinimized>
+        <fitnessCollecting>AT_FINAL_STEP</fitnessCollecting>
+        <fitnessSamplingReplications>3</fitnessSamplingReplications>
+        <fitnessCombineReplications>MEDIAN</fitnessCombineReplications>
+    </fitnessInfo>
+    <searchSpace>
+        <paramSpec>["r_weight_growth"           [0.9 "C" 1.3]]</paramSpec>
+        <paramSpec>["r_weight_estab"            [1.0 "C" 1.6]]</paramSpec>
+        <paramSpec>["gamma-recovery"            [5.0 "C" 6.5]]</paramSpec>
+        <paramSpec>["maturity-age-years"        2 3]</paramSpec>
+        <paramSpec>["min-sup-for-reproduction"  [4.5 "C" 8]]</paramSpec>
+        <paramSpec>["dispersal_radius_m"        200 225 250 275]</paramSpec>
+        <paramSpec>["management_reset_size"     [5 "C" 10]]</paramSpec>
+    </searchSpace>
+    <searchMethod type="StandardGA">
+        <searchMethodParameter name="mutation-rate" value="0.1"/>
+        <searchMethodParameter name="population-size" value="80"/>
+        <searchMethodParameter name="crossover-rate" value="0.9"/>
+        <searchMethodParameter name="population-model" value="generational"/>
+        <searchMethodParameter name="tournament-size" value="3"/>
+    </searchMethod>
+    <chromosomeRepresentation type="GrayBinaryChromosome"/>
+    <caching>true</caching>
+    <evaluationLimit>600</evaluationLimit>
+    <bestCheckingNumReplications>0</bestCheckingNumReplications>
+</search>

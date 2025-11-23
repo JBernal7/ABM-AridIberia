@@ -1,0 +1,3 @@
+"search-number","evaluation","r_weight_growth*","r_weight_estab*","gamma-recovery*","maturity-age-years*","min-sup-for-reproduction*","dispersal_radius_m*","management_reset_size*","num-replicates","best-fitness-so-far"
+"1","720","0.9790295262073702","1.5448935683222706","6.396269169146258","3","6.460128175783932","200","8.760967421988251","3","0.492321166657075"
+"2","720","1.299432364385443","1.2024078736552988","5.39219501029984","2","7.909208819714657","250","6.295033188372625","3","0.4938751285285166"
