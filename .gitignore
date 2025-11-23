@@ -1,0 +1,18 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+/renv/
+
+# Raster & large artifacts – use Git LFS
+*.asc
+*.tif
+*.tiff
+*.vrt
+*.nc
+*.zip
+
+# Outputs
+experiments/results/*
+
