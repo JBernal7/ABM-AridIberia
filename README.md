@@ -1,6 +1,6 @@
 # ABM-AridIberia
 
-Agent-based model of **Ailanthus altissima** expansion along Mediterranean road buffers (2008–2023), with baseline calibration and management scenarios..
+Agent-based model of *Ailanthus altissima* expansion along Mediterranean road buffers (2008–2023), with baseline calibration and management scenarios.
 
 ## Layout
 - `netlogo/` – NetLogo model(s).
