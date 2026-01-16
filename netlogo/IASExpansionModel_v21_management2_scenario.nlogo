@@ -38,6 +38,7 @@ globals [
 
   ;; Update
   cut-sampling              ;; buffer where the sampling has been implemented from 2008 to 2023 (10m from the road)
+  cut-management            ;; area to manage at each scenario
 ]
 
 
@@ -71,6 +72,8 @@ patches-own [
   ;; Update
   ;;inside?             ;; inside the 10m buffer
   ;;net-occupied?             ;; inside the 10m buffer AND occupied
+
+  inside-management?             ;; inside the management area
 ]
 
 to startup
@@ -154,6 +157,19 @@ to setup
   ;;  set inside? gis:intersects? cut-sampling self ;; property of patches, recognize if they intersect with the road buffer
   ;;  if inside? [ set pcolor gray ]   ;; only to see road buffer
   ;;]
+
+  ;; add the management area
+  set cut-management gis:load-dataset "C:/Users/claud/Downloads/UCO_contrato/Proyecto/02_ABM_Capitulo2/02_ABM_Capitulo2/abm_prep/management2.shp"
+  ask patches [
+    set inside-management? gis:intersects? cut-management self ;; property of patches, recognize if they intersect with the road buffer
+    if inside-management? [ set pcolor gray ]   ;; only to see road buffer
+  ]
+
+  ;; Go with management:
+  set management-enabled? true
+  set management-type "cut+revegetation"
+  set management-frequency "annual"
+  set management-start-tick 17 ;; Start management by year 2025
 
   reset-ticks
 end
@@ -719,14 +735,19 @@ end
 ; --------------- Management implementation ----------------------
 
 to draw-management-zone
-  if draw-zone? and mouse-down? [
-    let p patch mouse-xcor mouse-ycor
-    ask p [
-      set management-zone? true
-      set pcolor cyan
-    ]
+
+   ;; Do not manage before the management-start-tick
+  if ticks < management-start-tick [ stop ]
+
+  ;; ADDENDA to manage patches located in the road buffer
+  ask patches [
+    if inside-management? [ set management-zone? true] ;; Manage patches in the road
   ]
+
 end
+
+
+
 
 
 to select-rectangle
@@ -908,6 +929,8 @@ to go
   ;; Management by type and frecuency
 
     if management-enabled? [
+    draw-management-zone
+
     let should-apply-management? false
 
     if management-frequency = "once" and ticks = management-start-tick [
@@ -1236,7 +1259,7 @@ CHOOSER
 management-type
 management-type
 "none" "cut" "cut+revegetation"
-1
+2
 
 TEXTBOX
 24
@@ -1256,7 +1279,7 @@ CHOOSER
 management-frequency
 management-frequency
 "once" "annual" "biennial" "quadrennial"
-3
+1
 
 TEXTBOX
 24
@@ -1624,7 +1647,7 @@ management-start-tick
 management-start-tick
 0
 30
-6.0
+1.0
 1
 1
 NIL
